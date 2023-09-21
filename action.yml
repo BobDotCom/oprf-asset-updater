@@ -39,7 +39,7 @@ runs:
       run: pip install -r ${{ github.action_path }}/requirements.txt
     - name: "Debug"
       shell: bash
-      run: pwd && ls
+      run: ls
     - name: "Update assets"
       shell: bash
       run: python ${{ github.action_path }}/main.py -r "${{ inputs.repository }}" -b "${{ inputs.repository-branch }}" -v "${{ inputs.version-file }}" -i "${{ inputs.include }}" -e "${{ inputs.exclude }}" -m "${{ inputs.major }}"
