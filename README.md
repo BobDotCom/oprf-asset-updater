@@ -100,7 +100,7 @@ The following is an extended example with all available options.
 
     # Optional. The branch of the OpRedFlag repository to use
     # Defaults to "master"
-    branch: feature-123
+    branch: 'feature-123'
 
     # Optional. Location of local versions.json file
     # Defaults to "oprf-versions.json"
@@ -116,5 +116,5 @@ The following is an extended example with all available options.
 
     # Optional. Allow major updates, not recommended until after verifying compatibility
     # Defaults to false
-    major: true
+    major: 'true'
 ```
