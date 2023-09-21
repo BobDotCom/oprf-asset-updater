@@ -92,7 +92,7 @@ Occasionally, incompatible changes will be made. You should check from time to t
 ## Advanced Usage
 The following is an extended example with all available options.
 ```yaml
-- uses: BobDotCom/oprf-asset-updater@v0.1
+- uses: BobDotCom/oprf-asset-updater@v0.2
   with:
     # Optional. Location of OpRedFlag asset GitHub repository, in User/Repo format
     # Defaults to "NikolaiVChr/OpRedFlag"
