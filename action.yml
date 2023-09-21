@@ -10,7 +10,7 @@ inputs:
     required: false
     default: 'NikolaiVChr/OpRedFlag'
   repository-branch:
-    description: 'The branch of the repository to use'
+    description: 'The branch of the OpRedFlag repository to use'
     required: false
     default: 'master'
   version-file:
@@ -18,11 +18,11 @@ inputs:
     required: false
     default: "oprf-versions.json"
   include:
-    description: 'Files to update, separated by commas. Default: "*"'
+    description: 'Asset keys to update, separated by commas. Default: "*"'
     required: false
     default: "*"
   exclude:
-    description: 'Files to skip, separated by commas. Default: ""'
+    description: 'Asset keys to skip, separated by commas. Default: ""'
     required: false
     default: ""
   major:
