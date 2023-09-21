@@ -84,7 +84,7 @@ def build_remote_url(path: str) -> str:
 
 def save_local_version_data():
     with open(version_json, "w") as f:
-        json.dump(local_version_data, f)
+        json.dump(local_version_data, f, indent=2)
 
 
 def compare_versions(first, second):
