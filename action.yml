@@ -1,5 +1,9 @@
 name: 'OPRF Asset Updater'
 description: 'A workflow which automatically updates OPRF standard asset files from the OpRedFlag repository'
+author: BobDotCom
+branding:
+  icon: box
+  color: gray-dark
 inputs:
   repository:
     description: 'Location of OpRedFlag asset GitHub repository, in User/Repo format'

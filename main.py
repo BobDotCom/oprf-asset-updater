@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import argparse
 import os
 import json
@@ -59,20 +60,12 @@ parser.add_argument(
     default="false",
     choices=["true", "false"]
 )
-# parser.add_argument(
-#     "--damage",
-#     help="Location of local damage.nas file",
-#     required=False,
-# )
 
 
 args = parser.parse_args()
-#print(args)
 
 version_json = os.path.join(args.directory, args.version_json)
 
-# if not os.path.isfile(args.version_json):
-#     with open(args.version_json):
 with open(version_json, "r") as f:
     local_version_data = json.load(f)
 
