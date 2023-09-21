@@ -107,9 +107,8 @@ def compare_versions(first, second):
         return -1
 
 
-# with requests.get(build_remote_url("versions.json")) as response:
-#     remote_version_data = response.json()
-remote_version_data = {'vector': {'version': '1.0.0', 'path': 'emesary-damage-system/nasal/vector.nas'}, 'missile-code': {'version': '1.0.0', 'path': 'emesary-damage-system/nasal/missile-code.nas'}, 'radar-system': {'version': '1.0.0', 'path': 'radar/radar-system.nas'}, 'damage': {'version': '1.0.0', 'path': 'emesary-damage-system/nasal/damage.nas'}, 'iff': {'version': '1.0.0', 'path': 'libraries/iff.nas'}, 'datalink': {'version': '1.0.0', 'path': 'libraries/datalink.nas'}, 'station-manager': {'version': '1.0.0', 'path': 'libraries/station-manager.nas'}, 'rcs-mand': {'version': '1.0.0', 'path': 'radar/rcs.txt'}, 'hud-math': {'version': '1.0.0', 'path': 'libraries/hud_math.nas'}, 'armament-notification': {'version': '1.0.0', 'path': 'emesary-damage-system/nasal/ArmamentNotification.nas'}}
+with requests.get(build_remote_url("versions.json")) as response:
+    remote_version_data = response.json()
 
 if args.include == "*":
     keys_to_check = list(local_version_data.keys())
@@ -123,7 +122,7 @@ if args.exclude != "":
         keys_to_check.remove(key)
 
 for key, value in {key: local_version_data[key] for key in keys_to_check}.items():
-    def update(major: bool = False):
+    def update():
         with requests.get(build_remote_url(remote_version_data[key]["path"])) as response:
             response.raise_for_status()
             with open(os.path.join(args.directory, value["path"]), "w") as f:
@@ -136,9 +135,9 @@ for key, value in {key: local_version_data[key] for key in keys_to_check}.items(
                 update()
             else:
                 print(f"Remote {key} ({remote_version_data[key]['version']}) is a major version newer than ours ({value['version']}), skipping.")
-        case 2, 1, None:  # Remote is a minor/patch version bump ahead of us, or we don't have a saved version yet
+        case 2 | 1 | None:  # Remote is a minor/patch version bump ahead of us, or we don't have a saved version yet
             update()
-        case -1, -2, -3:
+        case -1 | -2 | -3:
             raise RuntimeError(f"Local {key} ({value['version']}) is newer than remote ({remote_version_data[key]['version']})")
         case 0:
             print(f"{key} is up-to-date ({value['version']})")
