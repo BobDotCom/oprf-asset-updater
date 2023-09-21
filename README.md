@@ -13,16 +13,24 @@ Create a file in your repository root called `oprf-versions.json`. The contents 
     "version": null,
     "path": "Nasal/missile-code.nas"
   },
-  "damage": {
-    "version": null,
-    "path": "Nasal/damage.json"
-  }
+  "damage": [
+    {
+      "version": null,
+      "path": "Aircraft1/Nasal/damage.json"
+    },
+    {
+      "version": null,
+      "path": "Aircraft2/Nasal/damage.json"
+    }
+  ]
 }
 ```
 
 The keys of the JSON (in this case, "missile-code" and "damage") correspond to the ID of an OPRF asset. You can view all available options [here](https://github.com/NikolaiVChr/OpRedFlag/blob/master/versions.json).
 
 For each of those keys, you should have a version number and a file path. The file path should be set to the location of the asset file, relative to your repository's root. For now, you can leave the "version" set to null.
+
+If you have multiple copies of a file in your repository (i.e. if you have multiple aircraft in the same repo), you can include them as a list. 
 
 ### Step 3
 
