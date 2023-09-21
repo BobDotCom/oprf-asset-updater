@@ -29,17 +29,10 @@ runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v3
-#    - uses: actions/setup-python@v4
-#      with:
-#        python-version: '3.11'
-#        cache: "pip"
-#        cache-dependency-path: "${{ github.action_path }}/requirements.txt"
     - name: "Install requirements"
       shell: bash
       run: pip install -r ${{ github.action_path }}/requirements.txt
-    - name: "Debug"
-      shell: bash
-      run: ls
     - name: "Update assets"
       shell: bash
       run: python ${{ github.action_path }}/main.py -r "${{ inputs.repository }}" -b "${{ inputs.repository-branch }}" -v "${{ inputs.version-file }}" -i "${{ inputs.include }}" -e "${{ inputs.exclude }}" -m "${{ inputs.major }}"
+    - uses: stefanzweifel/git-auto-commit-action@v4
