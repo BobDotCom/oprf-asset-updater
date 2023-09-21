@@ -56,5 +56,11 @@ runs:
         cat ${{ github.action_path }}/commit.txt >> $GITHUB_OUTPUT
         echo 'EOF' >> $GITHUB_OUTPUT
     - uses: stefanzweifel/git-auto-commit-action@v4
+      if: "${{ github.event_name == 'workflow_dispatch' }}"
       with:
         commit_message: ${{ steps.commit-message-step.outputs.commit_message }}
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      if: "${{ github.event_name != 'workflow_dispatch' }}"
+      with:
+        commit_message: ${{ steps.commit-message-step.outputs.commit_message }}
+        commit_author: 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>'
