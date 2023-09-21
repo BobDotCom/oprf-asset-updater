@@ -1,0 +1,41 @@
+name: 'OPRF Asset Updater'
+description: 'A workflow which automatically updates OPRF standard asset files from the OpRedFlag repository'
+inputs:
+  repository:
+    description: 'Location of OpRedFlag asset GitHub repository, in User/Repo format'
+    required: false
+    default: 'BobDotCom/OpRedFlag'
+  repository-branch:
+    description: 'The branch of the repository to use'
+    required: false
+    default: 'master'
+  version-file:
+    description: 'Location of local versions.json file'
+    required: false
+    default: "oprf-versions.json"
+  include:
+    description: 'Files to update, separated by commas. Default: "*"'
+    required: false
+    default: "*"
+  exclude:
+    description: 'Files to skip, separated by commas. Default: ""'
+    required: false
+    default: ""
+  major:
+    description: 'Allow major updates, not recommended until after verifying compatibility'
+    required: false
+    default: "false"
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: "pip"
+    - name: "Install requirements"
+      shell: bash
+      run: pip install -r requirements.txt
+    - name: "Update assets"
+      shell: bash
+      run: python main.py -d ${{ github.action_path }} -r ${{ inputs.repository }} -b ${{ inputs.branch }} -v ${{ inputs.version-json }} -i ${{ inputs.include }} -e ${{ inputs.exclude }} -m ${{ inputs.major }}
