@@ -8,7 +8,7 @@ inputs:
   repository:
     description: 'Location of OpRedFlag asset GitHub repository, in User/Repo format'
     required: false
-    default: 'BobDotCom/OpRedFlag'
+    default: 'NikolaiVChr/OpRedFlag'
   repository-branch:
     description: 'The branch of the repository to use'
     required: false

@@ -19,9 +19,9 @@ parser.add_argument(
 parser.add_argument(
     "-r",
     "--repository",
-    help='Location of OpRedFlag asset GitHub repository, in User/Repo format. Default: "BobDotCom/OpRedFlag"',
+    help='Location of OpRedFlag asset GitHub repository, in User/Repo format. Default: "NikolaiVChr/OpRedFlag"',
     required=False,
-    default="BobDotCom/OpRedFlag",
+    default="NikolaiVChr/OpRedFlag",
 )
 parser.add_argument(
     "-b",
