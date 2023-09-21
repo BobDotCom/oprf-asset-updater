@@ -117,4 +117,8 @@ The following is an extended example with all available options.
     # Optional. Allow major updates, not recommended until after verifying compatibility
     # Defaults to false
     major: 'true'
+
+    # Optional. Fail if local file versions are newer than remote
+    # Defaults to false
+    strict: 'false'
 ```
