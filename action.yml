@@ -36,9 +36,9 @@ runs:
       id: update-assets
       env:
         PYTHONUNBUFFERED: "1"
-      shell: bash
       uses: mathiasvr/command-output@v2
       with:
+        shell: bash
         run: ${{ github.action_path }}/main.py -r "${{ inputs.repository }}" -b "${{ inputs.repository-branch }}" -v "${{ inputs.version-file }}" -i "${{ inputs.include }}" -e "${{ inputs.exclude }}" -m "${{ inputs.major }}"
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
