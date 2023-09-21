@@ -32,14 +32,20 @@ runs:
     - name: "Install requirements"
       shell: bash
       run: pip install -r ${{ github.action_path }}/requirements.txt
+    - shell: bash
+      run: echo "Update OPRF Assets" >> ${{ github.action_path }}/commit.txt
     - name: "Update assets"
-      id: update-assets
       env:
         PYTHONUNBUFFERED: "1"
-      uses: mathiasvr/command-output@v2.0.0
-      with:
-        shell: bash
-        run: python ${{ github.action_path }}/main.py -r "${{ inputs.repository }}" -b "${{ inputs.repository-branch }}" -v "${{ inputs.version-file }}" -i "${{ inputs.include }}" -e "${{ inputs.exclude }}" -m "${{ inputs.major }}"
+      shell: bash
+      run: python ${{ github.action_path }}/main.py -r "${{ inputs.repository }}" -b "${{ inputs.repository-branch }}" -v "${{ inputs.version-file }}" -i "${{ inputs.include }}" -e "${{ inputs.exclude }}" -m "${{ inputs.major }}" >> ${{ github.action_path }}/commit.txt
+    - name: Set commit message
+      id: commit-message-step
+      shell: bash
+      run: |
+        echo 'commit_message<<EOF' >> $GITHUB_OUTPUT
+        cat ${{ github.action_path }}/commit.txt >> $GITHUB_OUTPUT
+        echo 'EOF' >> $GITHUB_OUTPUT
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: Update OPRF Assets\n\n${{ steps.update-assets.outputs.stdout }}
+        commit_message: ${{ steps.commit-message-step.outputs.commit_message }}
