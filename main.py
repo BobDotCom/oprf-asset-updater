@@ -60,6 +60,14 @@ parser.add_argument(
     default="false",
     choices=["true", "false"]
 )
+parser.add_argument(
+    "-s",
+    "--strict",
+    help="Fail if local file versions are newer than remote",
+    required=False,
+    default="false",
+    choices=["true", "false"]
+)
 
 
 args = parser.parse_args()
@@ -131,7 +139,11 @@ for key, value in {key: local_version_data[key] for key in keys_to_check}.items(
         case 2 | 1 | None:  # Remote is a minor/patch version bump ahead of us, or we don't have a saved version yet
             update()
         case -1 | -2 | -3:
-            raise RuntimeError(f"Local {key} ({value['version']}) is newer than remote ({remote_version_data[key]['version']})")
+            newer_msg = f"Local {key} ({value['version']}) is newer than remote ({remote_version_data[key]['version']})"
+            if args.strict == "true":
+                raise RuntimeError(newer_msg)
+            else:
+                print(f"{newer_msg}, skipping.")
         case 0:
             print(f"{key} is up-to-date ({value['version']})")
     save_local_version_data()
