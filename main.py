@@ -124,7 +124,7 @@ for key, value in {key: local_version_data[key] for key in keys_to_check}.items(
         value["version"] = remote_version_data[key]["version"]
     match compare_versions(remote_version_data[key]["version"], value["version"]):
         case 3:  # Remote is a major version bump ahead of us
-            if args.major:
+            if args.major == "true":
                 update()
             else:
                 print(f"Remote {key} ({remote_version_data[key]['version']}) is a major version newer than ours ({value['version']}), skipping.")
