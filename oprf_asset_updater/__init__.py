@@ -24,11 +24,20 @@ import requests
 from .typing_helpers import FileVersion
 
 
-def main(directory: str, version_json: str, repository: str, branch: str, include: str, exclude: str, major: str, strict: str) -> None:
+def main(
+        directory: str,
+        version_json: str,
+        repository: str,
+        branch: str,
+        include: str,
+        exclude: str,
+        major: str,
+        strict: str
+) -> None:
     version_json = os.path.join(directory, version_json)
 
     with open(version_json, "r") as f:
-        local_version_data = json.load(f)
+        local_version_data: dict[str, FileVersion | list[FileVersion]] = json.load(f)
 
     def build_remote_url(path: str) -> str:
         return f"https://raw.githubusercontent.com/{repository}/{branch}/{path}"
@@ -62,7 +71,7 @@ def main(directory: str, version_json: str, repository: str, branch: str, includ
         raise RuntimeError("Unreachable code")
 
     with requests.get(build_remote_url("versions.json")) as response:
-        remote_version_data = response.json()
+        remote_version_data: dict[str, FileVersion] = response.json()
 
     if include == "*":
         keys_to_check = list(local_version_data.keys())
@@ -72,8 +81,8 @@ def main(directory: str, version_json: str, repository: str, branch: str, includ
         keys_to_check = include.split(",")
 
     if exclude != "":
-        for key in exclude.split(","):
-            keys_to_check.remove(key)
+        for k in exclude.split(","):
+            keys_to_check.remove(k)
 
     def run_update(key: str, data: FileVersion) -> None:
         def update() -> None:
@@ -103,5 +112,8 @@ def main(directory: str, version_json: str, repository: str, branch: str, includ
                 print(f"{key} is up-to-date ({data['version']})")
         save_local_version_data()
 
-    for key, value in {key: local_version_data[key] for key in keys_to_check}.items():
-        run_update(key, value)
+    for k, v in {k: local_version_data[k] for k in keys_to_check}.items():
+        if not isinstance(v, list):
+            v = [v]
+        for d in v:
+            run_update(k, d)
