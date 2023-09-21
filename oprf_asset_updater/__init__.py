@@ -84,13 +84,14 @@ def main(
         for k in exclude.split(","):
             keys_to_check.remove(k)
 
-    def run_update(key: str, data: FileVersion) -> None:
+    def run_update(key: str, data: FileVersion, multi_key: bool = False) -> None:
+        post = f" ({data['path']})" if multi_key else ""
         def update() -> None:
             with requests.get(build_remote_url(remote_version_data[key]["path"])) as response:
                 response.raise_for_status()
                 with open(os.path.join(directory, data["path"]), "w") as f:
                     f.write(response.text)
-            print(f"Fetched {key} {data['version']}->{remote_version_data[key]['version']}")
+            print(f"Fetched {key} {data['version']}->{remote_version_data[key]['version']}{post}")
             data["version"] = remote_version_data[key]["version"]
         match compare_versions(remote_version_data[key]["version"], data["version"]):
             case VersionComparison.NEWER_MAJOR:
@@ -98,22 +99,23 @@ def main(
                 if major == "true":
                     update()
                 else:
-                    print(f"Remote {key} ({remote_version_data[key]['version']}) is a major version newer than ours ({data['version']}), skipping.")
+                    print(f"Remote {key} ({remote_version_data[key]['version']}) is a major version newer than ours ({data['version']}), skipping.{post}")
             case VersionComparison.NEWER_MINOR | VersionComparison.NEWER_PATCH | VersionComparison.UNKNOWN:
                 # Remote is a minor/patch version bump ahead of us, or we don't have a saved version yet
                 update()
             case VersionComparison.OLDER_MAJOR | VersionComparison.OLDER_MINOR | VersionComparison.OLDER_PATCH:
                 newer_msg = f"Local {key} ({data['version']}) is newer than remote ({remote_version_data[key]['version']})"
                 if strict == "true":
-                    raise RuntimeError(newer_msg)
+                    raise RuntimeError(newer_msg+post)
                 else:
-                    print(f"{newer_msg}, skipping.")
+                    print(f"{newer_msg}, skipping.{post}")
             case VersionComparison.EQUAL:
-                print(f"{key} is up-to-date ({data['version']})")
+                print(f"{key} is up-to-date ({data['version']}){post}")
         save_local_version_data()
 
     for k, v in {k: local_version_data[k] for k in keys_to_check}.items():
-        if not isinstance(v, list):
-            v = [v]
-        for d in v:
-            run_update(k, d)
+        if isinstance(v, list):
+            for d in v:
+                run_update(k, d, True)
+        else:
+            run_update(k, v)
