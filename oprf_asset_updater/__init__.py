@@ -32,7 +32,7 @@ def main(
         include: str,
         exclude: str,
         major: str,
-        strict: str
+        strict: bool
 ) -> None:
     version_json = os.path.join(directory, version_json)
 
@@ -105,7 +105,7 @@ def main(
                 update()
             case VersionComparison.OLDER_MAJOR | VersionComparison.OLDER_MINOR | VersionComparison.OLDER_PATCH:
                 newer_msg = f"Local {key} ({data['version']}) is newer than remote ({remote_version_data[key]['version']})"
-                if strict == "true":
+                if strict:
                     raise RuntimeError(newer_msg+post)
                 else:
                     print(f"{newer_msg}, skipping.{post}")

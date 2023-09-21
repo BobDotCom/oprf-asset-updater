@@ -78,9 +78,7 @@ parser.add_argument(
     "-s",
     "--strict",
     help="Fail if local file versions are newer than remote",
-    required=False,
-    default="false",
-    choices=["true", "false"]
+    action="store_true",
 )
 
 
