@@ -35,7 +35,7 @@ runs:
         cache: "pip"
     - name: "Install requirements"
       shell: bash
-      run: pip install -r requirements.txt
+      run: pip install -r ${{ github.action_path }}/requirements.txt
     - name: "Update assets"
       shell: bash
-      run: python main.py -d ${{ github.action_path }} -r ${{ inputs.repository }} -b ${{ inputs.branch }} -v ${{ inputs.version-json }} -i ${{ inputs.include }} -e ${{ inputs.exclude }} -m ${{ inputs.major }}
+      run: python ${{ github.action_path }}/main.py -r ${{ inputs.repository }} -b ${{ inputs.branch }} -v ${{ inputs.version-json }} -i ${{ inputs.include }} -e ${{ inputs.exclude }} -m ${{ inputs.major }}
