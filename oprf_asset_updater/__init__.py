@@ -24,15 +24,14 @@ import requests
 from .typing_helpers import FileVersion
 
 
-def main(args):
-
-    version_json = os.path.join(args.directory, args.version_json)
+def main(directory: str, version_json: str, repository: str, branch: str, include: str, exclude: str, major: str, strict: str) -> None:
+    version_json = os.path.join(directory, version_json)
 
     with open(version_json, "r") as f:
         local_version_data = json.load(f)
 
     def build_remote_url(path: str) -> str:
-        return f"https://raw.githubusercontent.com/{args.repository}/{args.branch}/{path}"
+        return f"https://raw.githubusercontent.com/{repository}/{branch}/{path}"
 
     def save_local_version_data() -> None:
         with open(version_json, "w") as f:
@@ -65,36 +64,38 @@ def main(args):
     with requests.get(build_remote_url("versions.json")) as response:
         remote_version_data = response.json()
 
-    if args.include == "*":
+    if include == "*":
         keys_to_check = list(local_version_data.keys())
-    elif args.include == "":
+    elif include == "":
         keys_to_check = []
     else:
-        keys_to_check = args.include.split(",")
+        keys_to_check = include.split(",")
 
-    if args.exclude != "":
-        for key in args.exclude.split(","):
+    if exclude != "":
+        for key in exclude.split(","):
             keys_to_check.remove(key)
 
     def run_update(key: str, data: FileVersion) -> None:
         def update() -> None:
             with requests.get(build_remote_url(remote_version_data[key]["path"])) as response:
                 response.raise_for_status()
-                with open(os.path.join(args.directory, data["path"]), "w") as f:
+                with open(os.path.join(directory, data["path"]), "w") as f:
                     f.write(response.text)
             print(f"Fetched {key} {data['version']}->{remote_version_data[key]['version']}")
             data["version"] = remote_version_data[key]["version"]
         match compare_versions(remote_version_data[key]["version"], data["version"]):
-            case VersionComparison.NEWER_MAJOR:  # Remote is a major version bump ahead of us
-                if args.major == "true":
+            case VersionComparison.NEWER_MAJOR:
+                # Remote is a major version bump ahead of us
+                if major == "true":
                     update()
                 else:
                     print(f"Remote {key} ({remote_version_data[key]['version']}) is a major version newer than ours ({data['version']}), skipping.")
-            case VersionComparison.NEWER_MINOR | VersionComparison.NEWER_PATCH | VersionComparison.UNKNOWN:  # Remote is a minor/patch version bump ahead of us, or we don't have a saved version yet
+            case VersionComparison.NEWER_MINOR | VersionComparison.NEWER_PATCH | VersionComparison.UNKNOWN:
+                # Remote is a minor/patch version bump ahead of us, or we don't have a saved version yet
                 update()
             case VersionComparison.OLDER_MAJOR | VersionComparison.OLDER_MINOR | VersionComparison.OLDER_PATCH:
                 newer_msg = f"Local {key} ({data['version']}) is newer than remote ({remote_version_data[key]['version']})"
-                if args.strict == "true":
+                if strict == "true":
                     raise RuntimeError(newer_msg)
                 else:
                     print(f"{newer_msg}, skipping.")

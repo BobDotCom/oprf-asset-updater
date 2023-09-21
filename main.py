@@ -86,4 +86,14 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-main(args)
+main(
+    args.directory,
+    args.version_json,
+    args.repository,
+    args.branch,
+    args.include,
+    args.exclude,
+    args.major,
+    args.strict,
+)
+
