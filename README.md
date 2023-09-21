@@ -52,8 +52,8 @@ on:
         default: "false"
         type: choice
         options:
-          - true
-          - false
+          - "true"
+          - "false"
 
 jobs:
   update:
