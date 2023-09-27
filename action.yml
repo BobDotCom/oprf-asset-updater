@@ -47,7 +47,7 @@ runs:
       env:
         PYTHONUNBUFFERED: "1"
       shell: bash
-      run: oprf update -r "${{ inputs.repository }}" -b "${{ inputs.repository-branch }}" -v "${{ inputs.version-file }}" -i "${{ inputs.include }}" -e "${{ inputs.exclude }}" -c "${{ inputs.compatibility }}" ${{ (inputs.strict == 'true') && '-m' || '' }} >> ${{ github.action_path }}/commit.txt
+      run: oprf update -r "${{ inputs.repository }}" -b "${{ inputs.repository-branch }}" -v "${{ inputs.version-file }}" -i "${{ inputs.include }}" -e "${{ inputs.exclude }}" -c "${{ inputs.compatibility }}" ${{ inputs.strict == 'true' && '-m' || '' }} >> ${{ github.action_path }}/commit.txt
     - name: Set commit message
       id: commit-message-step
       shell: bash
