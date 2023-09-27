@@ -40,7 +40,7 @@ runs:
     - uses: actions/checkout@v3
     - name: "Install requirements"
       shell: bash
-      run: pip install -r ${{ github.action_path }}/requirements.txt
+      run: python -V && pip install -r ${{ github.action_path }}/requirements.txt
     - shell: bash
       run: echo "Update OPRF Assets" >> ${{ github.action_path }}/commit.txt
     - name: "Update assets"
