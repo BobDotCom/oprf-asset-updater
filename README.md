@@ -47,21 +47,22 @@ on:
   workflow_dispatch:
     inputs:
       include:
-        description: "Files to update, separated by commas."
+        description: "Files to update, separated by commas"
         required: false
         default: "*"
       exclude:
-        description: "Files to skip, separated by commas."
+        description: "Files to skip, separated by commas"
         required: false
         default: ""
-      major:
-        description: "Allow major updates, not recommended until after verifying compatibility"
+      compatibility:
+        description: "Compatibility level, will only allow updates of this level or lower"
         required: true
-        default: "false"
+        default: "minor"
         type: choice
         options:
-          - "true"
-          - "false"
+          - "major"
+          - "minor"
+          - "patch"
 
 jobs:
   update:
@@ -77,7 +78,7 @@ jobs:
         with:
           include: ${{ inputs.include }}
           exclude: ${{ inputs.exclude }}
-          major: ${{ inputs.major }}
+          compatibility: ${{ inputs.compatibility }}
       - name: "Scheduled Update"
         uses: BobDotCom/OPRFAssetUpdater@v0.4
         if: "${{ github.event_name != 'workflow_dispatch' }}"
@@ -103,30 +104,31 @@ The following is an extended example with all available options.
 - uses: BobDotCom/oprf-asset-updater@v0.4
   with:
     # Optional. Location of OpRedFlag asset GitHub repository, in User/Repo format
-    # Defaults to "NikolaiVChr/OpRedFlag"
+    # Default: "NikolaiVChr/OpRedFlag"
     repository: 'BobDotCom/OpRedFlag'
 
     # Optional. The branch of the OpRedFlag repository to use
-    # Defaults to "master"
+    # Default: "master"
     branch: 'feature-123'
 
     # Optional. Location of local versions.json file
-    # Defaults to "oprf-versions.json"
+    # Default: "oprf-versions.json"
     version-file: 'data/versions.json'
 
     # Optional. Asset keys to update, separated by commas.
-    # Defaults to all keys included in the version file (*)
+    # Default: All ("*")
     include: 'damage,missile-code,datalink'
 
     # Optional. Asset keys to skip, separated by commas.
-    # Defaults to ""
-    exclude: "station-manager,iff"
+    # Default: None ("")
+    exclude: 'station-manager,iff'
 
-    # Optional. Allow major updates, not recommended until after verifying compatibility
-    # Defaults to false
-    major: 'true'
+    # Optional. Compatibility level, will only allow updates of this level or lower
+    # Choices: "major", "minor", "patch"
+    # Default: "minor"
+    compatibility: 'minor'
 
     # Optional. Fail if local file versions are newer than remote
-    # Defaults to false
+    # Default: "false"
     strict: 'false'
 ```

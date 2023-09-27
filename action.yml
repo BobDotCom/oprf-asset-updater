@@ -18,17 +18,17 @@ inputs:
     required: false
     default: "oprf-versions.json"
   include:
-    description: 'Asset keys to update, separated by commas. Default: "*"'
+    description: 'Files to update, separated by commas'
     required: false
     default: "*"
   exclude:
-    description: 'Asset keys to skip, separated by commas. Default: ""'
+    description: 'Files to skip, separated by commas'
     required: false
     default: ""
-  major:
-    description: 'Allow major updates, not recommended until after verifying compatibility'
+  compatibility:
+    description: 'Compatibility level, will only allow updates of this level or lower'
     required: false
-    default: "false"
+    default: "minor"
   strict:
     description: "Fail if local file versions are newer than remote"
     required: false
@@ -47,7 +47,7 @@ runs:
       env:
         PYTHONUNBUFFERED: "1"
       shell: bash
-      run: python ${{ github.action_path }}/main.py -r "${{ inputs.repository }}" -b "${{ inputs.repository-branch }}" -v "${{ inputs.version-file }}" -i "${{ inputs.include }}" -e "${{ inputs.exclude }}" -m "${{ inputs.major }}" -s "${{ inputs.strict }}" >> ${{ github.action_path }}/commit.txt
+      run: oprf update -r "${{ inputs.repository }}" -b "${{ inputs.repository-branch }}" -v "${{ inputs.version-file }}" -i "${{ inputs.include }}" -e "${{ inputs.exclude }}" -c "${{ inputs.compatibility }}" ${{ inputs.strict == "true" && "-m" || "" }} >> ${{ github.action_path }}/commit.txt
     - name: Set commit message
       id: commit-message-step
       shell: bash
