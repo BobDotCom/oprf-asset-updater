@@ -131,4 +131,8 @@ The following is an extended example with all available options.
     # Optional. Fail if local file versions are newer than remote
     # Default: "false"
     strict: 'false'
+
+    # Optional. The title of the commit that is made
+    # Default: "Update OPRF Assets"
+    commit_message: "Auto-Update OPRF Files"
 ```

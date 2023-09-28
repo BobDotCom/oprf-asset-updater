@@ -33,6 +33,10 @@ inputs:
     description: "Fail if local file versions are newer than remote"
     required: false
     default: "false"
+  commit_message:
+    description: "The title of the commit that is made"
+    required: false
+    default: "Update OPRF Assets"
 
 runs:
   using: "composite"
@@ -42,7 +46,7 @@ runs:
       shell: bash
       run: python -V && pip install -r ${{ github.action_path }}/requirements.txt
     - shell: bash
-      run: echo "Update OPRF Assets" >> ${{ github.action_path }}/commit.txt
+      run: echo ${{ inputs.commit_message }} >> ${{ github.action_path }}/commit.txt
     - name: "Update assets"
       env:
         PYTHONUNBUFFERED: "1"
