@@ -13,8 +13,8 @@ No changes yet.
 
 ### Fixed
 
-- Workflow expression syntax issue
-- Python version incompatibility
+- Fixed workflow expression syntax issue
+- Fixed python version incompatibility
 
 ## [0.5] - 2023-09-27
 
