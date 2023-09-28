@@ -73,14 +73,14 @@ jobs:
       contents: write
     steps:
       - name: "Manual Update"
-        uses: BobDotCom/OPRFAssetUpdater@v0.5
+        uses: BobDotCom/OPRFAssetUpdater@v0.6
         if: "${{ github.event_name == 'workflow_dispatch' }}"
         with:
           include: ${{ inputs.include }}
           exclude: ${{ inputs.exclude }}
           compatibility: ${{ inputs.compatibility }}
       - name: "Scheduled Update"
-        uses: BobDotCom/OPRFAssetUpdater@v0.5
+        uses: BobDotCom/OPRFAssetUpdater@v0.6
         if: "${{ github.event_name != 'workflow_dispatch' }}"
 
 ```
@@ -101,7 +101,7 @@ Occasionally, incompatible changes will be made. You should check from time to t
 ## Advanced Usage
 The following is an extended example with all available options.
 ```yaml
-- uses: BobDotCom/oprf-asset-updater@v0.5
+- uses: BobDotCom/oprf-asset-updater@v0.6
   with:
     # Optional. Location of OpRedFlag asset GitHub repository, in User/Repo format
     # Default: "NikolaiVChr/OpRedFlag"

@@ -9,6 +9,13 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 No changes yet.
 
+## [0.6] - 2023-09-27
+
+### Fixed
+
+- Workflow expression syntax issue
+- Python version incompatibility
+
 ## [0.5] - 2023-09-27
 
 ### Added
@@ -56,7 +63,8 @@ No major changes
 - Initial version
 
 
-[unreleased]: https://github.com/BobDotCom/oprf-asset-updater/compare/v0.5...HEAD
+[unreleased]: https://github.com/BobDotCom/oprf-asset-updater/compare/v0.6...HEAD
+[0.6]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.6
 [0.5]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.5
 [0.4]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.4
 [0.3]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.3
