@@ -1,1 +1,1 @@
-opredflag @ git+https://github.com/BobDotCom/py-opredflag.git@main#egg=opredflag[speedups]~=0.0
+git+https://github.com/BobDotCom/py-opredflag.git@main#egg=opredflag[speedups]~=0.0
