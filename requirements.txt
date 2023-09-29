@@ -1,1 +1,1 @@
-opredflag @ git+https://github.com/BobDotCom/py-opredflag
+opredflag @ git+https://github.com/BobDotCom/py-opredflag#egg=opredflag
