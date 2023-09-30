@@ -46,7 +46,7 @@ runs:
       shell: bash
       run: python -V && pip install --upgrade pip && pip install -r ${{ github.action_path }}/requirements.txt
     - shell: bash
-      run: echo ${{ inputs.commit_message || "Auto-Update Shared Files" }} >> ${{ github.action_path }}/commit.txt
+      run: echo ${{ inputs.commit_message || 'Auto-Update Shared Files' }} >> ${{ github.action_path }}/commit.txt
     - name: "Update assets"
       env:
         PYTHONUNBUFFERED: "1"
