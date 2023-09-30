@@ -7,7 +7,15 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
-No changes yet.
+### Changed
+
+- Changed default commit message
+- py-opredflag updated to v0.1.0
+
+### Fixed
+
+- Update pip before installation
+- Set default commit message if blank
 
 ## [0.7] - 2023-09-28
 
