@@ -133,6 +133,6 @@ The following is an extended example with all available options.
     strict: 'false'
 
     # Optional. The title of the commit that is made
-    # Default: "Update OPRF Assets"
+    # Default: "Auto-Update Shared Files"
     commit_message: "Auto-Update OPRF Files"
 ```
