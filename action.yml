@@ -44,7 +44,7 @@ runs:
     - uses: actions/checkout@v4
     - name: "Install requirements"
       shell: bash
-      run: python -V && pip install -r ${{ github.action_path }}/requirements.txt
+      run: python -V && pip install --upgrade pip && pip install -r ${{ github.action_path }}/requirements.txt
     - shell: bash
       run: echo ${{ inputs.commit_message }} >> ${{ github.action_path }}/commit.txt
     - name: "Update assets"
