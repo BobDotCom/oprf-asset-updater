@@ -124,7 +124,7 @@ The following is an extended example with all available options.
     exclude: 'station-manager,iff'
 
     # Optional. Compatibility level, will only allow updates of this level or lower
-    # Choices: "major", "minor", "patch"
+    # Choices: "major", "minor", "patch", "none"
     # Default: "minor"
     compatibility: 'minor'
 
