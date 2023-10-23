@@ -63,6 +63,7 @@ on:
           - "major"
           - "minor"
           - "patch"
+          - "none"
 
 jobs:
   update:
