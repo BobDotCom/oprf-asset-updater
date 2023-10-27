@@ -7,14 +7,20 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
-No changes yet.
+### Added
+- Added full support for semver spec including pre-releases and build metadata
+- Added new "none" choice for compatibility parameter
+
+### Changed
+
+- Updated py-opredflag to v0.2.0
 
 ## [0.8] - 2023-09-30
 
 ### Changed
 
 - Changed default commit message
-- py-opredflag updated to v0.1.0
+- Updated py-opredflag to v0.1.0
 
 ### Fixed
 
