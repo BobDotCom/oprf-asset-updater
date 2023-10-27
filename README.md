@@ -3,7 +3,8 @@ A workflow which automatically updates OPRF standard asset files from the OpRedF
 
 ## Usage
 ### Step 1
-First, update all of your OPRF asset files. This is important, because otherwise the initial run of the script could cause issues.
+First, update all of your OPRF asset files.
+This is important because otherwise, the initial run of the script could cause issues.
 
 ### Step 2
 Create a file in your repository root called `oprf-versions.json`. The contents of the file should look something like this:
@@ -30,11 +31,14 @@ The keys of the JSON (in this case, "missile-code" and "damage") correspond to t
 
 For each of those keys, you should have a version number and a file path. The file path should be set to the location of the asset file, relative to your repository's root. For now, you can leave the "version" set to null.
 
-If you have multiple copies of a file in your repository (i.e. if you have multiple aircraft in the same repo), you can include them as a list. 
+If you have multiple copies of a file in your repository (i.e., if you have multiple aircraft in the same repo),
+you can include them as a list. 
 
 ### Step 3
 
-Create a workflow file on your repository. You can use the template below. If you don't have much experience with workflows, don't worry - this file will work fine as-is.
+Create a workflow file in your repository.
+You can use the template below.
+If you have little experience with workflows, don't worry—this file will work fine as-is.
 
 ```yaml
 name: OPRF Asset Updater
@@ -69,7 +73,7 @@ jobs:
   update:
     # Needs to be a UNIX system
     runs-on: ubuntu-latest
-    # Needs permission to write files in order to update them
+    # Needs permission to write files to update them
     permissions:
       contents: write
     steps:
@@ -97,7 +101,10 @@ Once it's done, check the commit history for your repository, and make sure no i
 ### Step 5
 Now your repo is set up! Once per day, your repository will check for changes from the oprf repository, and if there are any compatible changes, it will update your assets.
 
-Occasionally, incompatible changes will be made. You should check from time to time, making sure you aren't out of date. If an incompatible change is made, you will need to make sure your aircraft is ready fo the changes, then create a manual workflow run (See [Step 4](#step-4)), and select the "major" option. 
+Occasionally, incompatible changes will be made.
+You should check from time to time, making sure you aren't out of date.
+If an incompatible change is made, you will need to make sure your aircraft is ready for the changes,
+then create a manual workflow run (See [Step 4](#step-4)), and select the "major" option. 
 
 ## Advanced Usage
 The following is an extended example with all available options.
@@ -124,7 +131,7 @@ The following is an extended example with all available options.
     # Default: None ("")
     exclude: 'station-manager,iff'
 
-    # Optional. Compatibility level, will only allow updates of this level or lower
+    # Optional. Only allow updates of this level or lower
     # Choices: "major", "minor", "patch", "none"
     # Default: "minor"
     compatibility: 'minor'
