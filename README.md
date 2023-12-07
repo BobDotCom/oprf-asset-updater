@@ -111,13 +111,17 @@ The following is an extended example with all available options.
 ```yaml
 - uses: BobDotCom/oprf-asset-updater@v0.8
   with:
+    # Optional. Local branch to checkout and apply changes to
+    # Default: Default branch ("")
+    branch: "main"
+
     # Optional. Location of OpRedFlag asset GitHub repository, in User/Repo format
     # Default: "NikolaiVChr/OpRedFlag"
     repository: 'BobDotCom/OpRedFlag'
 
     # Optional. The branch of the OpRedFlag repository to use
     # Default: "master"
-    branch: 'feature-123'
+    repository-branch: 'feature-123'
 
     # Optional. Location of local versions.json file
     # Default: "oprf-versions.json"

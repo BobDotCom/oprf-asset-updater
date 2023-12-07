@@ -10,6 +10,7 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Added
 - Added full support for semver spec including pre-releases and build metadata
 - Added new "none" choice for compatibility parameter
+- Added a new branch input to configure which branch the action should run on
 
 ### Changed
 

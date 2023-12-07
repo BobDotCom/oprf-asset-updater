@@ -5,6 +5,10 @@ branding:
   icon: box
   color: gray-dark
 inputs:
+  branch:
+    description: 'Local branch to checkout and apply changes to'
+    required: false
+    default: ''
   repository:
     description: 'Location of OpRedFlag asset GitHub repository, in User/Repo format'
     required: false
@@ -42,6 +46,8 @@ runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ inputs.branch }}
     - name: "Install requirements"
       shell: bash
       run: python -V && pip install --upgrade pip && pip install -r ${{ github.action_path }}/requirements.txt
