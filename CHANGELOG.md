@@ -7,6 +7,10 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+No changes yet.
+
+## [0.9] - 2023-12-07
+
 ### Added
 - Added full support for semver spec including pre-releases and build metadata
 - Added new "none" choice for compatibility parameter
@@ -88,7 +92,8 @@ No major changes
 - Initial version
 
 
-[unreleased]: https://github.com/BobDotCom/oprf-asset-updater/compare/v0.8...HEAD
+[unreleased]: https://github.com/BobDotCom/oprf-asset-updater/compare/v0.9...HEAD
+[0.9]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.9
 [0.8]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.8
 [0.7]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.7
 [0.6]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.6

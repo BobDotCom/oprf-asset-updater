@@ -78,14 +78,14 @@ jobs:
       contents: write
     steps:
       - name: "Manual Update"
-        uses: BobDotCom/OPRFAssetUpdater@v0.8
+        uses: BobDotCom/OPRFAssetUpdater@v0.9
         if: "${{ github.event_name == 'workflow_dispatch' }}"
         with:
           include: ${{ inputs.include }}
           exclude: ${{ inputs.exclude }}
           compatibility: ${{ inputs.compatibility }}
       - name: "Scheduled Update"
-        uses: BobDotCom/OPRFAssetUpdater@v0.8
+        uses: BobDotCom/OPRFAssetUpdater@v0.9
         if: "${{ github.event_name != 'workflow_dispatch' }}"
 
 ```
@@ -109,7 +109,7 @@ then create a manual workflow run (See [Step 4](#step-4)), and select the "major
 ## Advanced Usage
 The following is an extended example with all available options.
 ```yaml
-- uses: BobDotCom/oprf-asset-updater@v0.8
+- uses: BobDotCom/oprf-asset-updater@v0.9
   with:
     # Optional. Local branch to checkout and apply changes to
     # Default: Default branch ("")
