@@ -1,2 +1,2 @@
-opredflag==0.2.0
+opredflag==0.3.0
 # git+https://github.com/BobDotCom/py-opredflag.git@main
