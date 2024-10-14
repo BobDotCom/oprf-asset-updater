@@ -9,6 +9,12 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 No changes yet.
 
+## [0.9.1] - 2024-10-14
+
+### Fixed
+
+- Fixed system-wide install on Ubuntu 24.04 LTS by pinning python to v3.11
+
 ## [0.9] - 2023-12-07
 
 ### Added
@@ -92,7 +98,8 @@ No major changes
 - Initial version
 
 
-[unreleased]: https://github.com/BobDotCom/oprf-asset-updater/compare/v0.9...HEAD
+[unreleased]: https://github.com/BobDotCom/oprf-asset-updater/compare/v0.9.1...HEAD
+[0.9.1]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.9.1
 [0.9]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.9
 [0.8]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.8
 [0.7]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.7
