@@ -48,6 +48,9 @@ runs:
     - uses: actions/checkout@v4
       with:
         ref: ${{ inputs.branch }}
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
     - name: "Install requirements"
       shell: bash
       run: python -V && pip install --upgrade pip && pip install -r ${{ github.action_path }}/requirements.txt
