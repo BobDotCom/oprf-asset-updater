@@ -7,7 +7,9 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
-No changes yet.
+### Changed
+
+- Default OPRF asset repo changed from "NikolaiVChr/OpRedFlag" to "Op-RedFlag/OpRedFlag"
 
 ## [0.10] - 2024-10-14
 

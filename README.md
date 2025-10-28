@@ -27,7 +27,7 @@ Create a file in your repository root called `oprf-versions.json`. The contents 
 }
 ```
 
-The keys of the JSON (in this case, "missile-code" and "damage") correspond to the ID of an OPRF asset. You can view all available options [here](https://github.com/NikolaiVChr/OpRedFlag/blob/master/versions.json).
+The keys of the JSON (in this case, "missile-code" and "damage") correspond to the ID of an OPRF asset. You can view all available options [here](https://github.com/Op-RedFlag/OpRedFlag/blob/master/versions.json).
 
 For each of those keys, you should have a version number and a file path. The file path should be set to the location of the asset file, relative to your repository's root. For now, you can leave the "version" set to null.
 
@@ -116,7 +116,7 @@ The following is an extended example with all available options.
     branch: "main"
 
     # Optional. Location of OpRedFlag asset GitHub repository, in User/Repo format
-    # Default: "NikolaiVChr/OpRedFlag"
+    # Default: "Op-RedFlag/OpRedFlag"
     repository: 'BobDotCom/OpRedFlag'
 
     # Optional. The branch of the OpRedFlag repository to use
