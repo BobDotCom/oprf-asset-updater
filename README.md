@@ -27,7 +27,7 @@ Create a file in your repository root called `oprf-versions.json`. The contents 
 }
 ```
 
-The keys of the JSON (in this case, "missile-code" and "damage") correspond to the ID of an OPRF asset. You can view all available options [here](https://github.com/NikolaiVChr/OpRedFlag/blob/master/versions.json).
+The keys of the JSON (in this case, "missile-code" and "damage") correspond to the ID of an OPRF asset. You can view all available options [here](https://github.com/Op-RedFlag/OpRedFlag/blob/master/versions.json).
 
 For each of those keys, you should have a version number and a file path. The file path should be set to the location of the asset file, relative to your repository's root. For now, you can leave the "version" set to null.
 
@@ -78,14 +78,14 @@ jobs:
       contents: write
     steps:
       - name: "Manual Update"
-        uses: BobDotCom/OPRFAssetUpdater@v0.10
+        uses: BobDotCom/OPRFAssetUpdater@v0.11
         if: "${{ github.event_name == 'workflow_dispatch' }}"
         with:
           include: ${{ inputs.include }}
           exclude: ${{ inputs.exclude }}
           compatibility: ${{ inputs.compatibility }}
       - name: "Scheduled Update"
-        uses: BobDotCom/OPRFAssetUpdater@v0.10
+        uses: BobDotCom/OPRFAssetUpdater@v0.11
         if: "${{ github.event_name != 'workflow_dispatch' }}"
 
 ```
@@ -109,14 +109,14 @@ then create a manual workflow run (See [Step 4](#step-4)), and select the "major
 ## Advanced Usage
 The following is an extended example with all available options.
 ```yaml
-- uses: BobDotCom/oprf-asset-updater@v0.10
+- uses: BobDotCom/oprf-asset-updater@v0.11
   with:
     # Optional. Local branch to checkout and apply changes to
     # Default: Default branch ("")
     branch: "main"
 
     # Optional. Location of OpRedFlag asset GitHub repository, in User/Repo format
-    # Default: "NikolaiVChr/OpRedFlag"
+    # Default: "Op-RedFlag/OpRedFlag"
     repository: 'BobDotCom/OpRedFlag'
 
     # Optional. The branch of the OpRedFlag repository to use

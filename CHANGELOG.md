@@ -10,6 +10,12 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Changed
 - Updated runner to use python 3.14
 
+## [0.11] - 2025-10-28
+
+### Changed
+
+- Default OPRF asset repo changed from "NikolaiVChr/OpRedFlag" to "Op-RedFlag/OpRedFlag"
+
 ## [0.10] - 2024-10-14
 
 ### Changed
@@ -105,7 +111,8 @@ No major changes
 - Initial version
 
 
-[unreleased]: https://github.com/BobDotCom/oprf-asset-updater/compare/v0.10...HEAD
+[unreleased]: https://github.com/BobDotCom/oprf-asset-updater/compare/v0.11...HEAD
+[0.11]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.11
 [0.10]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.10
 [0.9.1]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.9.1
 [0.9]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.9
