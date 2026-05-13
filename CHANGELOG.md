@@ -7,6 +7,10 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+No changes yet.
+
+## [0.12] - 2026-05-13
+
 ### Added
 - Added update_timestamp_after option. This can help prevent github from disabling actions 
   after 60 days of inactivity on a repository.
@@ -15,7 +19,7 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Updated py-opredflag to v0.4.0
 - Updated runner to use python 3.14
 
-## [0.11] - 2025-10-28
+## [0.11] - 2026-05-11
 
 ### Changed
 
@@ -116,7 +120,8 @@ No major changes
 - Initial version
 
 
-[unreleased]: https://github.com/BobDotCom/oprf-asset-updater/compare/v0.11...HEAD
+[unreleased]: https://github.com/BobDotCom/oprf-asset-updater/compare/v0.12...HEAD
+[0.12]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.12
 [0.11]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.11
 [0.10]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.10
 [0.9.1]: https://github.com/BobDotCom/oprf-asset-updater/releases/tag/v0.9.1
