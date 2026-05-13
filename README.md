@@ -144,6 +144,12 @@ The following is an extended example with all available options.
     # Default: "false"
     strict: 'false'
 
+    # Optional. Automatically update the last_updated key in the version file after this amount of days, 
+    #   even when no changes have been made. This helps prevent github from disabling actions on inactive 
+    #   repositories after 60 days. Set to 0 for always or -1 for never.
+    # Default: "30"
+    update_timestamp_after: '14'
+
     # Optional. The title of the commit that is made
     # Default: "Auto-Update Shared Files"
     commit_message: "Auto-Update OPRF Files"

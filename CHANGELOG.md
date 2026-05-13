@@ -7,7 +7,12 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### Added
+- Added update_timestamp_after option. This can help prevent github from disabling actions 
+  after 60 days of inactivity on a repository.
+
 ### Changed
+- Updated py-opredflag to v0.4.0
 - Updated runner to use python 3.14
 
 ## [0.11] - 2025-10-28

@@ -37,6 +37,10 @@ inputs:
     description: "Fail if local file versions are newer than remote"
     required: false
     default: "false"
+  update_timestamp_after:
+    description: "Automatically update the last_updated key in the version file after this amount of days, even when no changes have been made. This helps prevent github from disabling actions on inactive repositories after 60 days. Set to 0 for always or -1 for never."
+    required: false
+    default: "30"
   commit_message:
     description: "The title of the commit that is made"
     required: false
@@ -60,7 +64,7 @@ runs:
       env:
         PYTHONUNBUFFERED: "1"
       shell: bash
-      run: oprf update -r "${{ inputs.repository }}" -b "${{ inputs.repository-branch }}" -v "${{ inputs.version-file }}" -i "${{ inputs.include }}" -e "${{ inputs.exclude }}" -c "${{ inputs.compatibility }}" ${{ inputs.strict == 'true' && '-m' || '' }} >> ${{ github.action_path }}/commit.txt
+      run: oprf update -r "${{ inputs.repository }}" -b "${{ inputs.repository-branch }}" -v "${{ inputs.version-file }}" -i "${{ inputs.include }}" -e "${{ inputs.exclude }}" -c "${{ inputs.compatibility }}" ${{ inputs.strict == 'true' && '-m' || '' }} -u "${{ inputs.update_timestamp_after }}" >> ${{ github.action_path }}/commit.txt
     - name: Set commit message
       id: commit-message-step
       shell: bash
