@@ -7,7 +7,8 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
-No changes yet.
+### Changed
+- Updated runner to use python 3.14
 
 ## [0.10] - 2024-10-14
 
